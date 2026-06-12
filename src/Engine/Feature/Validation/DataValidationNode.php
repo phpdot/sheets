@@ -1,0 +1,142 @@
+<?php
+
+declare(strict_types=1);
+
+namespace PHPdot\Sheets\Engine\Feature\Validation;
+
+use PHPdot\Sheets\Engine\Feature\Capability;
+use PHPdot\Sheets\Engine\Feature\FeatureNode;
+use PHPdot\Sheets\Engine\Support\InvalidArgumentException;
+
+/**
+ * A data validation applied to `sqref` — a dropdown list, a numeric/date/time
+ * range, a text-length limit, or a custom formula — optionally with an input
+ * prompt and an error alert. Use the static factories for ergonomic construction.
+ *
+ * @author Omar Hamdan <omar@phpdot.com>
+ * @license MIT
+ */
+final class DataValidationNode implements FeatureNode
+{
+    /**
+     * @param list<string> $values inline allowed values (List type)
+     *
+     * @throws InvalidArgumentException When an inline list value contains a
+     *                                  comma — Excel's inline-list format uses the comma as its separator with
+     *                                  no escape, so such a value cannot be represented; use a range-backed
+     *                                  list ({@see self::listFromRange()}) instead.
+     */
+    public function __construct(
+        public readonly string $sqref,
+        public readonly ValidationType $type,
+        public readonly ?ValidationOperator $operator = null,
+        public readonly ?string $formula1 = null,
+        public readonly ?string $formula2 = null,
+        public readonly array $values = [],
+        public readonly bool $allowBlank = true,
+        public readonly ?string $promptTitle = null,
+        public readonly ?string $prompt = null,
+        public readonly ?string $errorTitle = null,
+        public readonly ?string $error = null,
+    ) {
+        if ($this->type === ValidationType::List) {
+            foreach ($this->values as $value) {
+                if (str_contains($value, ',')) {
+                    throw new InvalidArgumentException(sprintf(
+                        'Inline list value "%s" contains a comma, which Excel cannot represent'
+                        . ' in an inline list — put the values in cells and use listFromRange().',
+                        $value,
+                    ));
+                }
+            }
+        }
+    }
+
+    public function capability(): Capability
+    {
+        return Capability::DataValidation;
+    }
+
+    /**
+     * A dropdown of inline values.
+     *
+     * @param list<string> $values
+     */
+    public static function list(string $sqref, array $values, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::List, values: $values, allowBlank: $allowBlank);
+    }
+
+    /**
+     * A dropdown sourced from a worksheet range (e.g. "Sheet1!$A$1:$A$9").
+     */
+    public static function listFromRange(string $sqref, string $range, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::List, formula1: $range, allowBlank: $allowBlank);
+    }
+
+    public static function wholeNumber(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::WholeNumber, $operator, $formula1, $formula2, allowBlank: $allowBlank);
+    }
+
+    public static function decimal(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::Decimal, $operator, $formula1, $formula2, allowBlank: $allowBlank);
+    }
+
+    public static function date(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::Date, $operator, $formula1, $formula2, allowBlank: $allowBlank);
+    }
+
+    public static function textLength(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::TextLength, $operator, $formula1, $formula2, allowBlank: $allowBlank);
+    }
+
+    public static function custom(string $sqref, string $formula, bool $allowBlank = true): self
+    {
+        return new self($sqref, ValidationType::Custom, formula1: $formula, allowBlank: $allowBlank);
+    }
+
+    /**
+     * Show an input prompt (tooltip) when a cell in the range is selected.
+     */
+    public function withInputMessage(string $title, string $text): self
+    {
+        return new self(
+            $this->sqref,
+            $this->type,
+            $this->operator,
+            $this->formula1,
+            $this->formula2,
+            $this->values,
+            $this->allowBlank,
+            $title,
+            $text,
+            $this->errorTitle,
+            $this->error,
+        );
+    }
+
+    /**
+     * Customize the error alert shown when an invalid value is entered.
+     */
+    public function withErrorMessage(string $title, string $text): self
+    {
+        return new self(
+            $this->sqref,
+            $this->type,
+            $this->operator,
+            $this->formula1,
+            $this->formula2,
+            $this->values,
+            $this->allowBlank,
+            $this->promptTitle,
+            $this->prompt,
+            $title,
+            $text,
+        );
+    }
+}
