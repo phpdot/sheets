@@ -52,6 +52,27 @@ final class CellActionsTest extends TestCase
         self::assertStringContainsString('autoFilter', $this->sheetXml());
     }
 
+    public function testDoubleFinalizeDoesNotDuplicateMerges(): void
+    {
+        $this->path = $this->tempFile();
+
+        $sheets = new Sheets();
+        $book = $sheets->write($this->path);
+        $sheet = $book->addSheet('A');
+        $sheet->addRow(['x']);
+        $sheet->merge('A1:B1');
+        $sheet->merge('A2:B2');
+        $sheet->finalize();          // explicit finalize #1
+        $book->addSheet('B');        // finalizes 'A' again via the previous-sheet close
+        $book->save();
+
+        $xml = $this->sheetXml();
+
+        // ECMA-376: a cell may belong to at most one merge — no region may repeat.
+        self::assertSame(2, substr_count($xml, '<mergeCell '), 'merges were emitted more than once');
+        self::assertStringContainsString('<mergeCells count="2">', $xml);
+    }
+
     private function sheetXml(): string
     {
         $zip = new \ZipArchive();

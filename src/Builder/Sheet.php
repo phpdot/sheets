@@ -540,6 +540,10 @@ final class Sheet
      */
     public function finalize(): void
     {
+        if ($this->finalized) {
+            return;
+        }
+
         $this->start();
         $this->flush();
         $this->flushActions();
