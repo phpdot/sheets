@@ -11,7 +11,7 @@
     ],
     "keywords": ["spreadsheet", "xlsx", "excel", "ooxml", "streaming"],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.4",
         "ext-zip": "*",
         "ext-mbstring": "*",
         "ext-xmlreader": "*",
