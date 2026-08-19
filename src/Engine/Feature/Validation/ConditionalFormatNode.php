@@ -33,7 +33,7 @@ final class ConditionalFormatNode implements FeatureNode
         public readonly CfOperator $operator,
         public readonly string $formula,
         public readonly Style $style,
-        public readonly ?string $formula2 = null,
+        public readonly null|string $formula2 = null,
     ) {}
 
     public function capability(): Capability

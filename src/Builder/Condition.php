@@ -21,10 +21,10 @@ use PHPdot\Sheets\Engine\Support\RuntimeException;
 
 final class Condition implements FeatureBuilder
 {
-    private ?CfOperator $operator = null;
+    private null|CfOperator $operator = null;
     private string $formula = '';
-    private ?string $formula2 = null;
-    private ?Style $style = null;
+    private null|string $formula2 = null;
+    private null|Style $style = null;
 
     /**
      * Starts a conditional-format rule scoped to the given cell range.

@@ -56,7 +56,7 @@ interface PackageBuilder
      *
      * @return string
      */
-    public function addRelationship(string $fromPart, string $type, string $target, ?string $targetMode = null): string;
+    public function addRelationship(string $fromPart, string $type, string $target, null|string $targetMode = null): string;
 
     /**
      * Declare a content type for a part path or a file extension.

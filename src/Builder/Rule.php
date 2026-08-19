@@ -24,14 +24,14 @@ use PHPdot\Sheets\Engine\Support\RuntimeException;
 
 final class Rule implements FeatureBuilder
 {
-    private ?ValidationOperator $operator = null;
-    private ?string $formula1 = null;
-    private ?string $formula2 = null;
+    private null|ValidationOperator $operator = null;
+    private null|string $formula1 = null;
+    private null|string $formula2 = null;
     private bool $allowBlank = true;
-    private ?string $promptTitle = null;
-    private ?string $prompt = null;
-    private ?string $errorTitle = null;
-    private ?string $error = null;
+    private null|string $promptTitle = null;
+    private null|string $prompt = null;
+    private null|string $errorTitle = null;
+    private null|string $error = null;
 
     /**
      * Starts a validation rule over the given range, with an optional type and dropdown values.
@@ -43,9 +43,9 @@ final class Rule implements FeatureBuilder
      */
     public function __construct(
         private readonly string $range,
-        private ?ValidationType $type = null,
+        private null|ValidationType $type = null,
         private array $values = [],
-        ?string $listRange = null,
+        null|string $listRange = null,
     ) {
         $this->formula1 = $listRange;
     }

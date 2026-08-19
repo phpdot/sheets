@@ -7,11 +7,11 @@
          failOnWarning="true"
          executionOrder="random">
     <testsuites>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+        <testsuite name="Builder">
+            <directory>tests/Builder</directory>
         </testsuite>
-        <testsuite name="Integration">
-            <directory>tests/Integration</directory>
+        <testsuite name="Engine">
+            <directory>tests/Engine</directory>
         </testsuite>
     </testsuites>
     <source>

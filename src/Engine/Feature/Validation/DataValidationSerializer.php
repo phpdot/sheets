@@ -82,7 +82,7 @@ final class DataValidationSerializer implements FeatureSerializer
      *
      * @return ?string
      */
-    private function formula1(DataValidationNode $node): ?string
+    private function formula1(DataValidationNode $node): null|string
     {
         if ($node->type === ValidationType::List && $node->values !== []) {
             return '"' . str_replace('"', '""', implode(',', $node->values)) . '"';

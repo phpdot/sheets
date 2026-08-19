@@ -22,7 +22,7 @@ final class ReadDataset
      * @var array<string, string>|null Header label => output key.
      */
 
-    private ?array $columns = null;
+    private null|array $columns = null;
 
     /**
      * @var array<string, \Closure> Output key => per-field transform.
@@ -30,7 +30,7 @@ final class ReadDataset
 
     private array $casts = [];
 
-    private ?\Closure $map = null;
+    private null|\Closure $map = null;
 
     /**
      * Wraps a reader and the 0-based sheet index the records are drawn from.

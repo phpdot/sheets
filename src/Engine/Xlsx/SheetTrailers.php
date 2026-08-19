@@ -27,7 +27,7 @@ final class SheetTrailers implements TrailerSink
 
     private array $items = [];
 
-    public function add(int $order, string $xml, ?string $group = null): void
+    public function add(int $order, string $xml, null|string $group = null): void
     {
         $this->items[] = ['order' => $order, 'xml' => $xml, 'group' => $group];
     }

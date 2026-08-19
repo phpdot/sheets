@@ -27,6 +27,6 @@ final class SheetInfo
     public function __construct(
         public readonly int $index,
         public readonly string $name,
-        public readonly ?string $dimension = null,
+        public readonly null|string $dimension = null,
     ) {}
 }

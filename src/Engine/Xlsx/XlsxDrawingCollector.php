@@ -38,7 +38,7 @@ final class XlsxDrawingCollector implements DrawingCollector
         'gif' => 'image/gif',
     ];
 
-    private ?string $drawingPath = null;
+    private null|string $drawingPath = null;
     private int $nextObjectId = 0;
 
     /**

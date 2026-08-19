@@ -91,10 +91,10 @@ final class ChartPolishTest extends TestCase
     }
 
     private function bar(
-        ?LegendPosition $legend = null,
-        ?string $xAxisTitle = null,
-        ?string $yAxisTitle = null,
-        ?DataLabels $dataLabels = null,
+        null|LegendPosition $legend = null,
+        null|string $xAxisTitle = null,
+        null|string $yAxisTitle = null,
+        null|DataLabels $dataLabels = null,
         bool $stacked = false,
     ): ChartNode {
         return new ChartNode(

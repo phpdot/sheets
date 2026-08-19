@@ -26,7 +26,7 @@ final class Dataset
      * @var array<int|string, string>|null Source key => header label (also selects and orders).
      */
 
-    private ?array $columns = null;
+    private null|array $columns = null;
 
     /**
      * @var array<int|string, \Closure> Source key => per-field transform.
@@ -40,8 +40,8 @@ final class Dataset
 
     private array $formats = [];
 
-    private ?\Closure $map = null;
-    private ?Style $headerStyle = null;
+    private null|\Closure $map = null;
+    private null|Style $headerStyle = null;
     private string $startAt = 'A1';
 
     /**

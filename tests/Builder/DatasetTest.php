@@ -85,7 +85,7 @@ final class DatasetTest extends TestCase
         $path = $this->tempFile();
         $book = (new Sheets())->write($path);
         $book->addSheet('S')->iterate($generator)
-            ->map(static fn(array $row): ?array => $row['n'] === 2 ? null : $row)
+            ->map(static fn(array $row): null|array => $row['n'] === 2 ? null : $row)
             ->write();
         $book->save();
 

@@ -27,11 +27,11 @@ final class PageSetup
      */
     public function __construct(
         public readonly Orientation $orientation = Orientation::Portrait,
-        public readonly ?int $fitToWidth = null,
-        public readonly ?int $fitToHeight = null,
-        public readonly ?string $header = null,
-        public readonly ?string $footer = null,
-        public readonly ?string $printArea = null,
-        public readonly ?int $repeatRows = null,
+        public readonly null|int $fitToWidth = null,
+        public readonly null|int $fitToHeight = null,
+        public readonly null|string $header = null,
+        public readonly null|string $footer = null,
+        public readonly null|string $printArea = null,
+        public readonly null|int $repeatRows = null,
     ) {}
 }

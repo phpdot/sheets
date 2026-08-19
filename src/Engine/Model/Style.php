@@ -39,15 +39,15 @@ final class Style
         public readonly bool $bold = false,
         public readonly bool $italic = false,
         public readonly bool $underline = false,
-        public readonly ?Color $fontColor = null,
-        public readonly ?Color $backgroundColor = null,
-        public readonly ?string $numberFormat = null,
-        public readonly ?float $fontSize = null,
-        public readonly ?string $fontName = null,
-        public readonly ?HorizontalAlign $horizontalAlign = null,
-        public readonly ?VerticalAlign $verticalAlign = null,
+        public readonly null|Color $fontColor = null,
+        public readonly null|Color $backgroundColor = null,
+        public readonly null|string $numberFormat = null,
+        public readonly null|float $fontSize = null,
+        public readonly null|string $fontName = null,
+        public readonly null|HorizontalAlign $horizontalAlign = null,
+        public readonly null|VerticalAlign $verticalAlign = null,
         public readonly bool $wrapText = false,
-        public readonly ?Borders $borders = null,
+        public readonly null|Borders $borders = null,
     ) {}
 
     /**
@@ -257,7 +257,7 @@ final class Style
      *
      * @return self
      */
-    public function withFontColor(?Color $fontColor): self
+    public function withFontColor(null|Color $fontColor): self
     {
         return $this->copy(fontColor: $fontColor, clearFontColor: true);
     }
@@ -269,7 +269,7 @@ final class Style
      *
      * @return self
      */
-    public function withBackgroundColor(?Color $backgroundColor): self
+    public function withBackgroundColor(null|Color $backgroundColor): self
     {
         return $this->copy(backgroundColor: $backgroundColor, clearBackgroundColor: true);
     }
@@ -281,7 +281,7 @@ final class Style
      *
      * @return self
      */
-    public function withNumberFormat(?string $numberFormat): self
+    public function withNumberFormat(null|string $numberFormat): self
     {
         return $this->copy(numberFormat: $numberFormat, clearNumberFormat: true);
     }
@@ -293,7 +293,7 @@ final class Style
      *
      * @return self
      */
-    public function withFontSize(?float $fontSize): self
+    public function withFontSize(null|float $fontSize): self
     {
         return $this->copy(fontSize: $fontSize, clearFontSize: true);
     }
@@ -305,7 +305,7 @@ final class Style
      *
      * @return self
      */
-    public function withFontName(?string $fontName): self
+    public function withFontName(null|string $fontName): self
     {
         return $this->copy(fontName: $fontName, clearFontName: true);
     }
@@ -317,7 +317,7 @@ final class Style
      *
      * @return self
      */
-    public function withHorizontalAlign(?HorizontalAlign $horizontalAlign): self
+    public function withHorizontalAlign(null|HorizontalAlign $horizontalAlign): self
     {
         return $this->copy(horizontalAlign: $horizontalAlign, clearHorizontalAlign: true);
     }
@@ -329,7 +329,7 @@ final class Style
      *
      * @return self
      */
-    public function withVerticalAlign(?VerticalAlign $verticalAlign): self
+    public function withVerticalAlign(null|VerticalAlign $verticalAlign): self
     {
         return $this->copy(verticalAlign: $verticalAlign, clearVerticalAlign: true);
     }
@@ -353,7 +353,7 @@ final class Style
      *
      * @return self
      */
-    public function withBorders(?Borders $borders): self
+    public function withBorders(null|Borders $borders): self
     {
         return $this->copy(borders: $borders, clearBorders: true);
     }
@@ -366,7 +366,7 @@ final class Style
      *
      * @return Style
      */
-    public function withBorder(BorderStyle $style, ?Color $color = null): self
+    public function withBorder(BorderStyle $style, null|Color $color = null): self
     {
         return $this->copy(borders: Borders::all($style, $color), clearBorders: true);
     }
@@ -477,25 +477,25 @@ final class Style
      * @return Style
      */
     private function copy(
-        ?bool $bold = null,
-        ?bool $italic = null,
-        ?bool $underline = null,
-        ?Color $fontColor = null,
+        null|bool $bold = null,
+        null|bool $italic = null,
+        null|bool $underline = null,
+        null|Color $fontColor = null,
         bool $clearFontColor = false,
-        ?Color $backgroundColor = null,
+        null|Color $backgroundColor = null,
         bool $clearBackgroundColor = false,
-        ?string $numberFormat = null,
+        null|string $numberFormat = null,
         bool $clearNumberFormat = false,
-        ?float $fontSize = null,
+        null|float $fontSize = null,
         bool $clearFontSize = false,
-        ?string $fontName = null,
+        null|string $fontName = null,
         bool $clearFontName = false,
-        ?HorizontalAlign $horizontalAlign = null,
+        null|HorizontalAlign $horizontalAlign = null,
         bool $clearHorizontalAlign = false,
-        ?VerticalAlign $verticalAlign = null,
+        null|VerticalAlign $verticalAlign = null,
         bool $clearVerticalAlign = false,
-        ?bool $wrapText = null,
-        ?Borders $borders = null,
+        null|bool $wrapText = null,
+        null|Borders $borders = null,
         bool $clearBorders = false,
     ): self {
         return new self(

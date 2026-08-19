@@ -55,7 +55,7 @@ final class ChartXmlBuilder
      *
      * @return string
      */
-    private function title(?string $title): string
+    private function title(null|string $title): string
     {
         if ($title === null) {
             return '<c:autoTitleDeleted val="1"/>';
@@ -354,7 +354,7 @@ final class ChartXmlBuilder
      *
      * @return string
      */
-    private function legend(?LegendPosition $position): string
+    private function legend(null|LegendPosition $position): string
     {
         if ($position === null) {
             return '';
@@ -415,7 +415,7 @@ final class ChartXmlBuilder
      *
      * @return string
      */
-    private function catAx(int $id, string $pos, int $crossId, ?string $title, bool $hidden): string
+    private function catAx(int $id, string $pos, int $crossId, null|string $title, bool $hidden): string
     {
         return '<c:catAx><c:axId val="' . $id . '"/><c:scaling><c:orientation val="minMax"/></c:scaling>'
             . '<c:delete val="' . ($hidden ? '1' : '0') . '"/><c:axPos val="' . $pos . '"/>' . $this->axisTitle($title)
@@ -434,7 +434,7 @@ final class ChartXmlBuilder
      *
      * @return string
      */
-    private function valAx(int $id, string $pos, int $crossId, ?string $title, bool $hidden, ?string $crosses): string
+    private function valAx(int $id, string $pos, int $crossId, null|string $title, bool $hidden, null|string $crosses): string
     {
         return '<c:valAx><c:axId val="' . $id . '"/><c:scaling><c:orientation val="minMax"/></c:scaling>'
             . '<c:delete val="' . ($hidden ? '1' : '0') . '"/><c:axPos val="' . $pos . '"/>' . $this->axisTitle($title)
@@ -449,7 +449,7 @@ final class ChartXmlBuilder
      *
      * @return string
      */
-    private function axisTitle(?string $title): string
+    private function axisTitle(null|string $title): string
     {
         return $title !== null ? $this->richText($title) : '';
     }

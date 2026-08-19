@@ -31,13 +31,13 @@ final class Image implements FeatureBuilder
     private readonly string $bytes;
     private readonly string $extension;
 
-    private ?string $cell = null;
+    private null|string $cell = null;
 
     /**
      * @var array{0: int, 1: int}|null
      */
 
-    private ?array $size = null;
+    private null|array $size = null;
 
     /**
      * Loads the image from a file path, or from raw bytes when an explicit format is given.
@@ -45,7 +45,7 @@ final class Image implements FeatureBuilder
      * @param string $source
      * @param ?string $format
      */
-    public function __construct(string $source, ?string $format)
+    public function __construct(string $source, null|string $format)
     {
         if ($format !== null) {
             $this->bytes = $source;
@@ -80,7 +80,7 @@ final class Image implements FeatureBuilder
      *
      * @return self
      */
-    public function at(string $cell, ?array $size = null): self
+    public function at(string $cell, null|array $size = null): self
     {
         $this->cell = $cell;
         $this->size = $size;

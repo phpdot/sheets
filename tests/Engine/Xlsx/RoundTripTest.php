@@ -140,7 +140,7 @@ final class RoundTripTest extends TestCase
         }
         $reader->close();
 
-        $styleIds = array_map(static fn(Cell $cell): ?int => $cell->styleId, $collected[0] ?? []);
+        $styleIds = array_map(static fn(Cell $cell): null|int => $cell->styleId, $collected[0] ?? []);
         self::assertSame([$styleId], $styleIds);
     }
 

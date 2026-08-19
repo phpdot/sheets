@@ -90,7 +90,7 @@ final class ZipPackageBuilder implements PackageBuilder
         return $path;
     }
 
-    public function addRelationship(string $fromPart, string $type, string $target, ?string $targetMode = null): string
+    public function addRelationship(string $fromPart, string $type, string $target, null|string $targetMode = null): string
     {
         $relsPath = $this->relsPathFor($fromPart);
         $next = ($this->relCounters[$relsPath] ?? 0) + 1;
@@ -261,7 +261,7 @@ final class ZipPackageBuilder implements PackageBuilder
         $full = $this->tempDir . '/' . $path;
         $dir = dirname($full);
 
-        if (!is_dir($dir) && !mkdir($dir, 0700, true) && !is_dir($dir)) {
+        if (!is_dir($dir) && !mkdir($dir, 0o700, true) && !is_dir($dir)) {
             throw new WriteException(sprintf('Cannot create directory for part: %s', $path));
         }
 

@@ -204,7 +204,7 @@ final class StyleReader
      *
      * @return ?Border
      */
-    private function edge(?\SimpleXMLElement $edge): ?Border
+    private function edge(null|\SimpleXMLElement $edge): null|Border
     {
         if ($edge === null) {
             return null;
@@ -243,7 +243,7 @@ final class StyleReader
      *
      * @return ?Color
      */
-    private function color(string $rgb): ?Color
+    private function color(string $rgb): null|Color
     {
         if ($rgb === '') {
             return null;

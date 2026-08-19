@@ -28,6 +28,6 @@ final class DataLabels
         public readonly bool $category = false,
         public readonly bool $seriesName = false,
         public readonly bool $percent = false,
-        public readonly ?DataLabelPosition $position = null,
+        public readonly null|DataLabelPosition $position = null,
     ) {}
 }

@@ -147,7 +147,7 @@ final class ReadSheet
      *
      * @return ?Style
      */
-    public function styleOf(Cell $cell): ?Style
+    public function styleOf(Cell $cell): null|Style
     {
         return $this->reader->style($cell->styleId);
     }

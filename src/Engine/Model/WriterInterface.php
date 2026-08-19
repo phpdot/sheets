@@ -45,7 +45,7 @@ interface WriterInterface
      *
      * @return void
      */
-    public function startSheet(string $name, ?SheetOptions $options = null): void;
+    public function startSheet(string $name, null|SheetOptions $options = null): void;
 
     /**
      * Fast path: append a row of raw scalar values with no per-cell object allocation.
@@ -57,7 +57,7 @@ interface WriterInterface
      *
      * @return void
      */
-    public function addRow(array $values, ?int $styleId = null, ?float $height = null, bool $hidden = false): void;
+    public function addRow(array $values, null|int $styleId = null, null|float $height = null, bool $hidden = false): void;
 
     /**
      * Rich path: append a row of Cell objects (per-cell types and styles).
@@ -86,7 +86,7 @@ interface WriterInterface
      *
      * @return void
      */
-    public function hyperlink(string $cell, string $url, ?string $tooltip = null): void;
+    public function hyperlink(string $cell, string $url, null|string $tooltip = null): void;
 
     /**
      * Enable filter dropdowns over a header range (e.g. "A1:E1") on the current sheet.
@@ -116,7 +116,7 @@ interface WriterInterface
      *
      * @return void
      */
-    public function comment(string $cell, string $text, ?string $author = null): void;
+    public function comment(string $cell, string $text, null|string $author = null): void;
 
     /**
      * Buffer a feature node (chart, image, rule); serialized at `close()`.

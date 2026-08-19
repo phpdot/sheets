@@ -21,6 +21,6 @@ final class Border
      */
     public function __construct(
         public readonly BorderStyle $style,
-        public readonly ?Color $color = null,
+        public readonly null|Color $color = null,
     ) {}
 }

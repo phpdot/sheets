@@ -29,9 +29,9 @@ final class ChartSeries
      */
     public function __construct(
         public readonly string $valuesRef,
-        public readonly ?string $name = null,
-        public readonly ?Color $color = null,
-        public readonly ?ChartType $type = null,
+        public readonly null|string $name = null,
+        public readonly null|Color $color = null,
+        public readonly null|ChartType $type = null,
         public readonly bool $secondaryAxis = false,
     ) {}
 }

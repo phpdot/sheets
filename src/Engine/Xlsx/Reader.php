@@ -57,19 +57,19 @@ final class Reader implements ReaderInterface
 
     private array $sheetInfos = [];
 
-    private ?string $stylesXml = null;
+    private null|string $stylesXml = null;
 
     /**
      * @var array<int, Style>|null Lazily parsed cell styles.
      */
 
-    private ?array $styles = null;
+    private null|array $styles = null;
 
     /**
      * @var array<int, bool>|null Lazily computed: cellXfs index => carries a date number format.
      */
 
-    private ?array $dateStyles = null;
+    private null|array $dateStyles = null;
 
     /**
      * Whether the workbook uses the legacy Mac 1904 date system.
@@ -83,7 +83,7 @@ final class Reader implements ReaderInterface
      * @param string $path
      * @param ?ReadOptions $options
      */
-    public function __construct(string $path, ?ReadOptions $options = null)
+    public function __construct(string $path, null|ReadOptions $options = null)
     {
         if (!is_file($path) || !is_readable($path)) {
             throw new ReadException(sprintf('File not found or not readable: %s', $path));
@@ -122,7 +122,7 @@ final class Reader implements ReaderInterface
         return $this->sheetInfos;
     }
 
-    public function rows(?int $sheetIndex = null): iterable
+    public function rows(null|int $sheetIndex = null): iterable
     {
         if ($this->closed) {
             throw new ReadException('Reader is closed.');
@@ -134,7 +134,7 @@ final class Reader implements ReaderInterface
         }
     }
 
-    public function values(?int $sheetIndex = null): iterable
+    public function values(null|int $sheetIndex = null): iterable
     {
         foreach ($this->rows($sheetIndex) as $rowNumber => $cells) {
             $row = [];
@@ -150,7 +150,7 @@ final class Reader implements ReaderInterface
         $this->closed = true;
     }
 
-    public function style(?int $styleId): ?Style
+    public function style(null|int $styleId): null|Style
     {
         if ($styleId === null || $styleId === 0) {
             return null;
@@ -163,7 +163,7 @@ final class Reader implements ReaderInterface
         return $this->styles[$styleId] ?? null;
     }
 
-    public function mergedCells(?int $sheetIndex = null): array
+    public function mergedCells(null|int $sheetIndex = null): array
     {
         if ($this->closed) {
             throw new ReadException('Reader is closed.');
@@ -194,7 +194,7 @@ final class Reader implements ReaderInterface
     /**
      * @return array<int, float> 1-based column index => width
      */
-    public function columnWidths(?int $sheetIndex = null): array
+    public function columnWidths(null|int $sheetIndex = null): array
     {
         $reader = $this->openWorksheet($sheetIndex);
         if ($reader === null) {
@@ -231,7 +231,7 @@ final class Reader implements ReaderInterface
     /**
      * @return array<string, string> cell reference => external URL
      */
-    public function hyperlinks(?int $sheetIndex = null): array
+    public function hyperlinks(null|int $sheetIndex = null): array
     {
         $part = $this->worksheetPart($sheetIndex);
         if ($part === null) {
@@ -276,7 +276,7 @@ final class Reader implements ReaderInterface
     /**
      * @return array<string, string> cell reference => comment text
      */
-    public function comments(?int $sheetIndex = null): array
+    public function comments(null|int $sheetIndex = null): array
     {
         $part = $this->worksheetPart($sheetIndex);
         if ($part === null) {
@@ -317,7 +317,7 @@ final class Reader implements ReaderInterface
     /**
      * @return array<string, string> cell reference => formula expression
      */
-    public function formulas(?int $sheetIndex = null): array
+    public function formulas(null|int $sheetIndex = null): array
     {
         $reader = $this->openWorksheet($sheetIndex);
         if ($reader === null) {
@@ -353,7 +353,7 @@ final class Reader implements ReaderInterface
      *
      * @return ?string
      */
-    private function worksheetPart(?int $sheetIndex): ?string
+    private function worksheetPart(null|int $sheetIndex): null|string
     {
         if ($this->closed) {
             throw new ReadException('Reader is closed.');
@@ -369,7 +369,7 @@ final class Reader implements ReaderInterface
      *
      * @return ?\XMLReader
      */
-    private function openWorksheet(?int $sheetIndex): ?\XMLReader
+    private function openWorksheet(null|int $sheetIndex): null|\XMLReader
     {
         $part = $this->worksheetPart($sheetIndex);
         if ($part === null) {
@@ -471,7 +471,7 @@ final class Reader implements ReaderInterface
      *
      * @return ?string
      */
-    private function readMemberOrNull(string $name): ?string
+    private function readMemberOrNull(string $name): null|string
     {
         $zip = new \ZipArchive();
         if ($zip->open($this->path) !== true) {
@@ -537,7 +537,7 @@ final class Reader implements ReaderInterface
      *
      * @return ?string
      */
-    private function readWholeOrNull(\ZipArchive $zip, string $name): ?string
+    private function readWholeOrNull(\ZipArchive $zip, string $name): null|string
     {
         $stat = $zip->statName($name);
         if ($stat === false) {
@@ -630,7 +630,7 @@ final class Reader implements ReaderInterface
      *
      * @return ?string
      */
-    private function readDimension(string $part): ?string
+    private function readDimension(string $part): null|string
     {
         $reader = @\XMLReader::open('zip://' . $this->path . '#' . $part);
         if ($reader === false) {
@@ -839,7 +839,7 @@ final class Reader implements ReaderInterface
      *
      * @return Cell
      */
-    private function cellFor(string $type, ?int $style, string $value, ?string $formula, string $inline, bool $hasValue): Cell
+    private function cellFor(string $type, null|int $style, string $value, null|string $formula, string $inline, bool $hasValue): Cell
     {
         switch ($type) {
             case 'inlineStr':

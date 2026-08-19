@@ -26,15 +26,15 @@ use PHPdot\Sheets\Engine\Xlsx\Writer;
 
 final class Workbook
 {
-    private ?string $creator = null;
-    private ?string $title = null;
-    private ?string $subject = null;
-    private ?string $keywords = null;
-    private ?string $description = null;
-    private ?string $category = null;
+    private null|string $creator = null;
+    private null|string $title = null;
+    private null|string $subject = null;
+    private null|string $keywords = null;
+    private null|string $description = null;
+    private null|string $category = null;
 
-    private ?Writer $writer = null;
-    private ?Sheet $current = null;
+    private null|Writer $writer = null;
+    private null|Sheet $current = null;
     private bool $saved = false;
 
     /**

@@ -35,15 +35,15 @@ final class Chart implements FeatureBuilder
      */
 
     private array $series = [];
-    private ?string $cell = null;
+    private null|string $cell = null;
     private int $widthPx = 480;
     private int $heightPx = 288;
-    private ?string $categories = null;
-    private ?string $title = null;
-    private ?LegendPosition $legend = null;
-    private ?string $xAxisTitle = null;
-    private ?string $yAxisTitle = null;
-    private ?DataLabels $dataLabels = null;
+    private null|string $categories = null;
+    private null|string $title = null;
+    private null|LegendPosition $legend = null;
+    private null|string $xAxisTitle = null;
+    private null|string $yAxisTitle = null;
+    private null|DataLabels $dataLabels = null;
     private bool $stacked = false;
     private bool $percentStacked = false;
 
@@ -86,7 +86,7 @@ final class Chart implements FeatureBuilder
      */
     public function series(
         string $valuesRef,
-        ?string $name = null,
+        null|string $name = null,
         Color|string|null $color = null,
         ChartType|string|null $as = null,
         bool $secondaryAxis = false,
@@ -222,7 +222,7 @@ final class Chart implements FeatureBuilder
      *
      * @return Chart
      */
-    public function at(string $cell, ?array $size = null): self
+    public function at(string $cell, null|array $size = null): self
     {
         $this->cell = $cell;
         if ($size !== null) {

@@ -30,7 +30,7 @@ final class Cell
     public function __construct(
         public readonly int|float|string|bool|null $value,
         public readonly CellType $type = CellType::String,
-        public readonly ?int $styleId = null,
+        public readonly null|int $styleId = null,
     ) {}
 
     /**
@@ -120,7 +120,7 @@ final class Cell
      *
      * @return ?\DateTimeImmutable
      */
-    public function toDateTime(): ?\DateTimeImmutable
+    public function toDateTime(): null|\DateTimeImmutable
     {
         if ($this->type !== CellType::Date || !(is_int($this->value) || is_float($this->value))) {
             return null;
@@ -136,7 +136,7 @@ final class Cell
      *
      * @return Cell
      */
-    public function withStyleId(?int $styleId): self
+    public function withStyleId(null|int $styleId): self
     {
         return new self($this->value, $this->type, $styleId);
     }

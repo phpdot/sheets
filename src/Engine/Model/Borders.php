@@ -22,10 +22,10 @@ final class Borders
      * @param ?Border $left
      */
     public function __construct(
-        public readonly ?Border $top = null,
-        public readonly ?Border $right = null,
-        public readonly ?Border $bottom = null,
-        public readonly ?Border $left = null,
+        public readonly null|Border $top = null,
+        public readonly null|Border $right = null,
+        public readonly null|Border $bottom = null,
+        public readonly null|Border $left = null,
     ) {}
 
     /**
@@ -36,7 +36,7 @@ final class Borders
      *
      * @return self
      */
-    public static function all(BorderStyle $style, ?Color $color = null): self
+    public static function all(BorderStyle $style, null|Color $color = null): self
     {
         $edge = new Border($style, $color);
 
@@ -61,7 +61,7 @@ final class Borders
      *
      * @return string
      */
-    private function edge(?Border $border): string
+    private function edge(null|Border $border): string
     {
         if ($border === null) {
             return '';

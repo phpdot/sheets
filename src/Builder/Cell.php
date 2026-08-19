@@ -26,9 +26,9 @@ use PHPdot\Sheets\Engine\Xlsx\Writer;
 
 final class Cell
 {
-    private ?CellType $type = null;
+    private null|CellType $type = null;
     private Style|int|null $style = null;
-    private ?string $format = null;
+    private null|string $format = null;
     private bool $sealed = false;
 
     /**
@@ -248,7 +248,7 @@ final class Cell
      *
      * @return ?int
      */
-    private function resolveStyle(Writer $writer, CellType $type): ?int
+    private function resolveStyle(Writer $writer, CellType $type): null|int
     {
         $format = $this->format;
         if ($format === null && $type === CellType::Date) {

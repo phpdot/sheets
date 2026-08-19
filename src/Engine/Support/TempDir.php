@@ -35,7 +35,7 @@ final class TempDir
     {
         $dir = sys_get_temp_dir() . '/' . $prefix . bin2hex(random_bytes(8));
 
-        if (!mkdir($dir, 0700) && !is_dir($dir)) {
+        if (!mkdir($dir, 0o700) && !is_dir($dir)) {
             throw new WriteException(sprintf('Cannot create temporary directory: %s', $dir));
         }
 

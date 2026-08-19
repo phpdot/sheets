@@ -43,7 +43,7 @@ final class Sheet
 {
     private bool $started = false;
     private bool $finalized = false;
-    private ?Row $pending = null;
+    private null|Row $pending = null;
     private int $rowCursor = 0;
 
     /**
@@ -70,7 +70,7 @@ final class Sheet
 
     private array $comments = [];
 
-    private ?string $autoFilter = null;
+    private null|string $autoFilter = null;
 
     /**
      * @var array<int, float> 0-based column index => width.
@@ -81,7 +81,7 @@ final class Sheet
     private int $frozenRows = 0;
     private int $frozenColumns = 0;
     private bool $showGridLines = true;
-    private ?Color $tabColor = null;
+    private null|Color $tabColor = null;
     private bool $sheetHidden = false;
 
     /**
@@ -90,16 +90,16 @@ final class Sheet
 
     private array $hiddenColumns = [];
     private bool $protect = false;
-    private ?string $password = null;
+    private null|string $password = null;
 
     private bool $hasPageSetup = false;
     private Orientation $orientation = Orientation::Portrait;
-    private ?int $fitToWidth = null;
-    private ?int $fitToHeight = null;
-    private ?string $printArea = null;
-    private ?int $repeatRows = null;
-    private ?string $header = null;
-    private ?string $footer = null;
+    private null|int $fitToWidth = null;
+    private null|int $fitToHeight = null;
+    private null|string $printArea = null;
+    private null|int $repeatRows = null;
+    private null|string $header = null;
+    private null|string $footer = null;
 
     /**
      * __construct.
@@ -238,7 +238,7 @@ final class Sheet
      *
      * @return Sheet
      */
-    public function protect(?string $password = null): self
+    public function protect(null|string $password = null): self
     {
         $this->assertBuffering();
         $this->protect = true;
@@ -459,7 +459,7 @@ final class Sheet
      *
      * @return Image
      */
-    public function addImage(string $source, ?string $format = null): Image
+    public function addImage(string $source, null|string $format = null): Image
     {
         $image = new Image($source, $format);
         $this->addFeature($image);
@@ -672,7 +672,7 @@ final class Sheet
      *
      * @return Sheet
      */
-    public function link(string $cell, string $url, ?string $tooltip = null): self
+    public function link(string $cell, string $url, null|string $tooltip = null): self
     {
         $this->assertNotFinalized();
         $this->links[] = ['cell' => $cell, 'url' => $url, 'tooltip' => $tooltip];
@@ -689,7 +689,7 @@ final class Sheet
      *
      * @return Sheet
      */
-    public function comment(string $cell, string $text, ?string $author = null): self
+    public function comment(string $cell, string $text, null|string $author = null): self
     {
         $this->assertNotFinalized();
         $this->comments[] = ['cell' => $cell, 'text' => $text, 'author' => $author];

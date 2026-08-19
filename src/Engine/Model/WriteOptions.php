@@ -26,11 +26,11 @@ final class WriteOptions
      */
     public function __construct(
         public readonly bool $useSharedStrings = false,
-        public readonly ?string $creator = null,
-        public readonly ?string $title = null,
-        public readonly ?string $subject = null,
-        public readonly ?string $keywords = null,
-        public readonly ?string $description = null,
-        public readonly ?string $category = null,
+        public readonly null|string $creator = null,
+        public readonly null|string $title = null,
+        public readonly null|string $subject = null,
+        public readonly null|string $keywords = null,
+        public readonly null|string $description = null,
+        public readonly null|string $category = null,
     ) {}
 }

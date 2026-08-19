@@ -30,5 +30,5 @@ interface TrailerSink
      *
      * @return void
      */
-    public function add(int $order, string $xml, ?string $group = null): void;
+    public function add(int $order, string $xml, null|string $group = null): void;
 }

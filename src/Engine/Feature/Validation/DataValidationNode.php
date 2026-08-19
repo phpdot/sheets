@@ -42,15 +42,15 @@ final class DataValidationNode implements FeatureNode
     public function __construct(
         public readonly string $sqref,
         public readonly ValidationType $type,
-        public readonly ?ValidationOperator $operator = null,
-        public readonly ?string $formula1 = null,
-        public readonly ?string $formula2 = null,
+        public readonly null|ValidationOperator $operator = null,
+        public readonly null|string $formula1 = null,
+        public readonly null|string $formula2 = null,
         public readonly array $values = [],
         public readonly bool $allowBlank = true,
-        public readonly ?string $promptTitle = null,
-        public readonly ?string $prompt = null,
-        public readonly ?string $errorTitle = null,
-        public readonly ?string $error = null,
+        public readonly null|string $promptTitle = null,
+        public readonly null|string $prompt = null,
+        public readonly null|string $errorTitle = null,
+        public readonly null|string $error = null,
     ) {
         if ($this->type === ValidationType::List) {
             foreach ($this->values as $value) {
@@ -109,7 +109,7 @@ final class DataValidationNode implements FeatureNode
      *
      * @return self
      */
-    public static function wholeNumber(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    public static function wholeNumber(string $sqref, ValidationOperator $operator, string $formula1, null|string $formula2 = null, bool $allowBlank = true): self
     {
         return new self($sqref, ValidationType::WholeNumber, $operator, $formula1, $formula2, allowBlank: $allowBlank);
     }
@@ -125,7 +125,7 @@ final class DataValidationNode implements FeatureNode
      *
      * @return self
      */
-    public static function decimal(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    public static function decimal(string $sqref, ValidationOperator $operator, string $formula1, null|string $formula2 = null, bool $allowBlank = true): self
     {
         return new self($sqref, ValidationType::Decimal, $operator, $formula1, $formula2, allowBlank: $allowBlank);
     }
@@ -141,7 +141,7 @@ final class DataValidationNode implements FeatureNode
      *
      * @return self
      */
-    public static function date(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    public static function date(string $sqref, ValidationOperator $operator, string $formula1, null|string $formula2 = null, bool $allowBlank = true): self
     {
         return new self($sqref, ValidationType::Date, $operator, $formula1, $formula2, allowBlank: $allowBlank);
     }
@@ -157,7 +157,7 @@ final class DataValidationNode implements FeatureNode
      *
      * @return self
      */
-    public static function textLength(string $sqref, ValidationOperator $operator, string $formula1, ?string $formula2 = null, bool $allowBlank = true): self
+    public static function textLength(string $sqref, ValidationOperator $operator, string $formula1, null|string $formula2 = null, bool $allowBlank = true): self
     {
         return new self($sqref, ValidationType::TextLength, $operator, $formula1, $formula2, allowBlank: $allowBlank);
     }

@@ -34,7 +34,7 @@ interface ReaderInterface
      *
      * @return iterable<int<1, max>, list<Cell>>
      */
-    public function rows(?int $sheetIndex = null): iterable;
+    public function rows(null|int $sheetIndex = null): iterable;
 
     /**
      * Stream a sheet's rows as raw scalar values (fast). Keys are 1-based row numbers.
@@ -44,7 +44,7 @@ interface ReaderInterface
      *
      * @return iterable<int<1, max>, list<int|float|string|bool|null>>
      */
-    public function values(?int $sheetIndex = null): iterable;
+    public function values(null|int $sheetIndex = null): iterable;
 
     /**
      * Resolve a cell's `styleId` (from `Cell::$styleId`) back to a {@see Style}.
@@ -54,7 +54,7 @@ interface ReaderInterface
      *
      * @return ?Style
      */
-    public function style(?int $styleId): ?Style;
+    public function style(null|int $styleId): null|Style;
 
     /**
      * The merged cell ranges on a sheet (e.g. ["A1:D1", "A2:A5"]). Null selects the first sheet.
@@ -63,7 +63,7 @@ interface ReaderInterface
      *
      * @return list<string>
      */
-    public function mergedCells(?int $sheetIndex = null): array;
+    public function mergedCells(null|int $sheetIndex = null): array;
 
     /**
      * Explicit column widths on a sheet. Null selects the first sheet.
@@ -72,7 +72,7 @@ interface ReaderInterface
      *
      * @return array<int, float> 1-based column index => width
      */
-    public function columnWidths(?int $sheetIndex = null): array;
+    public function columnWidths(null|int $sheetIndex = null): array;
 
     /**
      * External hyperlinks on a sheet. Null selects the first sheet.
@@ -81,7 +81,7 @@ interface ReaderInterface
      *
      * @return array<string, string> cell reference => URL
      */
-    public function hyperlinks(?int $sheetIndex = null): array;
+    public function hyperlinks(null|int $sheetIndex = null): array;
 
     /**
      * Cell comments on a sheet. Null selects the first sheet.
@@ -90,7 +90,7 @@ interface ReaderInterface
      *
      * @return array<string, string> cell reference => comment text
      */
-    public function comments(?int $sheetIndex = null): array;
+    public function comments(null|int $sheetIndex = null): array;
 
     /**
      * Formula expressions on a sheet (the `<f>` text; `values()` returns cached results).
@@ -100,7 +100,7 @@ interface ReaderInterface
      *
      * @return array<string, string> cell reference => formula
      */
-    public function formulas(?int $sheetIndex = null): array;
+    public function formulas(null|int $sheetIndex = null): array;
 
     /**
      * Release the underlying file handle and any temporary resources.

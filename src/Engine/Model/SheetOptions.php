@@ -35,11 +35,11 @@ final class SheetOptions
         public readonly int $frozenColumns = 0,
         public readonly array $columnWidths = [],
         public readonly bool $autoSizeColumns = false,
-        public readonly ?Color $tabColor = null,
+        public readonly null|Color $tabColor = null,
         public readonly bool $hidden = false,
         public readonly array $hiddenColumns = [],
         public readonly bool $protectSheet = false,
-        public readonly ?string $password = null,
-        public readonly ?PageSetup $pageSetup = null,
+        public readonly null|string $password = null,
+        public readonly null|PageSetup $pageSetup = null,
     ) {}
 }

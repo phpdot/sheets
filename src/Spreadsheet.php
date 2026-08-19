@@ -36,7 +36,7 @@ final class Spreadsheet
      *
      * @return WriterInterface
      */
-    public static function writer(string $path, ?WriteOptions $options = null): WriterInterface
+    public static function writer(string $path, null|WriteOptions $options = null): WriterInterface
     {
         return new Writer($path, $options);
     }
@@ -49,7 +49,7 @@ final class Spreadsheet
      *
      * @return ReaderInterface
      */
-    public static function reader(string $path, ?ReadOptions $options = null): ReaderInterface
+    public static function reader(string $path, null|ReadOptions $options = null): ReaderInterface
     {
         return new Reader($path, $options);
     }

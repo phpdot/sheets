@@ -233,7 +233,7 @@ final class ForeignFileTest extends TestCase
      * A minimal one-sheet archive whose workbook rel uses the given target —
      * three inline-string rows without r attributes, with a dimension hint.
      */
-    private function buildMinimalXlsx(string $path, string $target, ?string $sheetXml = null, ?string $stylesXml = null, ?string $workbookXml = null): void
+    private function buildMinimalXlsx(string $path, string $target, null|string $sheetXml = null, null|string $stylesXml = null, null|string $workbookXml = null): void
     {
         $main = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
         $ct = 'http://schemas.openxmlformats.org/package/2006/content-types';

@@ -30,7 +30,7 @@ final class ColorScaleNode implements FeatureNode
         public readonly string $sqref,
         public readonly Color $minColor,
         public readonly Color $maxColor,
-        public readonly ?Color $midColor = null,
+        public readonly null|Color $midColor = null,
     ) {}
 
     public function capability(): Capability

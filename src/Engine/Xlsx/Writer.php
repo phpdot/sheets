@@ -58,7 +58,7 @@ final class Writer implements WriterInterface
     private readonly PartCounter $mediaCounter;
     private readonly PartCounter $chartCounter;
     private readonly PartCounter $commentCounter;
-    private readonly ?SharedStrings $sharedStrings;
+    private readonly null|SharedStrings $sharedStrings;
 
     /**
      * @var list<array{id: int, name: string, hidden: bool}>
@@ -72,7 +72,7 @@ final class Writer implements WriterInterface
 
     private array $definedNames = [];
 
-    private ?PartWriter $currentSheet = null;
+    private null|PartWriter $currentSheet = null;
     private int $currentSheetId = 0;
     private int $currentRow = 0;
 
@@ -100,7 +100,7 @@ final class Writer implements WriterInterface
 
     private array $hyperlinks = [];
 
-    private ?string $autoFilterRange = null;
+    private null|string $autoFilterRange = null;
 
     /**
      * @var list<int> 1-based hidden column indices on the current sheet.
@@ -109,8 +109,8 @@ final class Writer implements WriterInterface
     private array $hiddenColumns = [];
 
     private bool $protectSheet = false;
-    private ?string $password = null;
-    private ?PageSetup $pageSetup = null;
+    private null|string $password = null;
+    private null|PageSetup $pageSetup = null;
 
     /**
      * @var list<array{cell: string, text: string, author: string, col: int, row: int}>
@@ -134,8 +134,8 @@ final class Writer implements WriterInterface
 
     private array $maxLength = [];
 
-    private ?string $scratchPath = null;
-    private ?string $scratchDir = null;
+    private null|string $scratchPath = null;
+    private null|string $scratchDir = null;
 
     private bool $closed = false;
 
@@ -147,7 +147,7 @@ final class Writer implements WriterInterface
      */
     public function __construct(
         private readonly string $outputPath,
-        ?WriteOptions $options = null,
+        null|WriteOptions $options = null,
     ) {
         $this->options = $options ?? new WriteOptions();
         $this->package = new ZipPackageBuilder();
@@ -186,7 +186,7 @@ final class Writer implements WriterInterface
         return $this->styles->register($style);
     }
 
-    public function startSheet(string $name, ?SheetOptions $options = null): void
+    public function startSheet(string $name, null|SheetOptions $options = null): void
     {
         $this->assertOpen();
         $name = $this->validateSheetName($name);
@@ -232,7 +232,7 @@ final class Writer implements WriterInterface
         $this->currentSheet = $part;
     }
 
-    public function addRow(array $values, ?int $styleId = null, ?float $height = null, bool $hidden = false): void
+    public function addRow(array $values, null|int $styleId = null, null|float $height = null, bool $hidden = false): void
     {
         $part = $this->requireSheet();
         $this->currentRow++;
@@ -290,7 +290,7 @@ final class Writer implements WriterInterface
         $this->mergedRanges[] = $this->normalizeRange($range);
     }
 
-    public function hyperlink(string $cell, string $url, ?string $tooltip = null): void
+    public function hyperlink(string $cell, string $url, null|string $tooltip = null): void
     {
         $this->assertOpen();
 
@@ -318,7 +318,7 @@ final class Writer implements WriterInterface
         $this->autoFilterRange = $this->normalizeRange($range);
     }
 
-    public function comment(string $cell, string $text, ?string $author = null): void
+    public function comment(string $cell, string $text, null|string $author = null): void
     {
         $this->assertOpen();
 
@@ -954,7 +954,7 @@ final class Writer implements WriterInterface
      *
      * @return string
      */
-    private function scalarCell(int $column, int|float|string|bool|null $value, ?int $styleId): string
+    private function scalarCell(int $column, int|float|string|bool|null $value, null|int $styleId): string
     {
         $reference = ColumnRef::letters($column) . $this->currentRow;
         $attributes = $reference . '"' . $this->styleAttr($styleId);
@@ -981,7 +981,7 @@ final class Writer implements WriterInterface
      *
      * @return string
      */
-    private function typedCell(int $column, Cell $cell, ?int $styleId): string
+    private function typedCell(int $column, Cell $cell, null|int $styleId): string
     {
         $reference = ColumnRef::letters($column) . $this->currentRow;
         $attributes = $reference . '"' . $this->styleAttr($styleId);
@@ -1036,7 +1036,7 @@ final class Writer implements WriterInterface
      *
      * @return string
      */
-    private function styleAttr(?int $styleId): string
+    private function styleAttr(null|int $styleId): string
     {
         return $styleId !== null && $styleId > 0 ? ' s="' . $styleId . '"' : '';
     }
@@ -1049,7 +1049,7 @@ final class Writer implements WriterInterface
      *
      * @return string
      */
-    private function rowAttrs(?float $height, bool $hidden): string
+    private function rowAttrs(null|float $height, bool $hidden): string
     {
         $attr = $height !== null ? ' ht="' . (string) $height . '" customHeight="1"' : '';
         if ($hidden) {
@@ -1260,7 +1260,7 @@ final class Writer implements WriterInterface
      *
      * @return string
      */
-    private function coreProperty(string $tag, ?string $value): string
+    private function coreProperty(string $tag, null|string $value): string
     {
         return $value !== null ? '<' . $tag . '>' . Xml::text($value) . '</' . $tag . '>' : '';
     }

@@ -336,7 +336,7 @@ final class StyleTable implements StyleRegistry
      *
      * @return string
      */
-    private function edgeXml(string $tag, ?Border $border): string
+    private function edgeXml(string $tag, null|Border $border): string
     {
         if ($border === null) {
             return '<' . $tag . '/>';

@@ -19,7 +19,7 @@ use PHPdot\Sheets\Engine\Support\RuntimeException;
 
 final class FillRule implements FeatureBuilder
 {
-    private ?Style $style = null;
+    private null|Style $style = null;
 
     /**
      * @var \Closure(Style): FeatureNode

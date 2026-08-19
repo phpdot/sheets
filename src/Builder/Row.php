@@ -27,9 +27,9 @@ final class Row
      * @var list<Cell>|null Rich cells once `addCell()` is used; null = scalar fast path.
      */
 
-    private ?array $cells = null;
+    private null|array $cells = null;
     private Style|int|null $style = null;
-    private ?float $height = null;
+    private null|float $height = null;
     private bool $hidden = false;
     private bool $sealed = false;
 
@@ -143,7 +143,7 @@ final class Row
      *
      * @return ?int
      */
-    private function resolveStyleId(Writer $writer): ?int
+    private function resolveStyleId(Writer $writer): null|int
     {
         return match (true) {
             $this->style === null => null,

@@ -23,8 +23,8 @@ final class Row
      */
     public function __construct(
         public readonly array $cells,
-        public readonly ?int $styleId = null,
-        public readonly ?float $height = null,
+        public readonly null|int $styleId = null,
+        public readonly null|float $height = null,
         public readonly bool $hidden = false,
     ) {}
 
